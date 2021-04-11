@@ -17,7 +17,8 @@ const int freqLED14 = 80000;
 const int ledChannel_12 = 0;
 const int ledChannel_14 = 1;
 const int resolution = 8;
-
+//const int resolution = 12;
+const int NUMSTEPS = pow(2,resolution)-1; 
 
 void setup(){
   // configure LED PWM functionalitites
@@ -31,14 +32,14 @@ void setup(){
  
 void loop(){
   // increase the LED brightness
-  for(int dutyCycle = 0; dutyCycle <= 255; dutyCycle++){   
+  for(int dutyCycle = 0; dutyCycle <= NUMSTEPS; dutyCycle++){   
     // changing the LED brightness with PWM
     ledcWrite(ledChannel_12, dutyCycle);
     ledcWrite(ledChannel_14, dutyCycle);
     delay(15);
   }
     // decrease the LED brightness
-  for(int dutyCycle = 255; dutyCycle >= 0; dutyCycle--){
+  for(int dutyCycle = NUMSTEPS; dutyCycle >= 0; dutyCycle--){
     // changing the LED brightness with PWM
     ledcWrite(ledChannel_12, dutyCycle);   
     ledcWrite(ledChannel_14, dutyCycle);
