@@ -16,10 +16,14 @@ const int freqLED14 = 80000;
 
 const int ledChannel_12 = 0;
 const int ledChannel_14 = 1;
-const int resolution = 8;
-//const int resolution = 12;
+//const int resolution = 8;     // Freq became 80.00 HKz when freq set for 80K
+const int resolution = 9;     // Freq became 80.00 HKz when freq set for 80K
+//const int resolution = 10;  // Freq became 78.13 HKz when freq set for 80K
+//const int resolution = 11;  // Freq became 39.06 HKz when freq set for 80K
+//const int resolution = 12;  // Freq became 19.h HKz when freq set for 80K
 const int NUMSTEPS = pow(2,resolution)-1; 
 
+const int DELAYTIME = 2;
 void setup(){
   // configure LED PWM functionalitites
   ledcSetup(ledChannel_12, freqLED12, resolution);
@@ -36,14 +40,14 @@ void loop(){
     // changing the LED brightness with PWM
     ledcWrite(ledChannel_12, dutyCycle);
     ledcWrite(ledChannel_14, dutyCycle);
-    delay(15);
+    delay(DELAYTIME);
   }
     // decrease the LED brightness
   for(int dutyCycle = NUMSTEPS; dutyCycle >= 0; dutyCycle--){
     // changing the LED brightness with PWM
     ledcWrite(ledChannel_12, dutyCycle);   
     ledcWrite(ledChannel_14, dutyCycle);
-    delay(15);
+    delay(DELAYTIME);
   }
 }
 
