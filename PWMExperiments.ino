@@ -1,5 +1,7 @@
 /* PWMExperiments.ino
- * From: https://randomnerdtutorials.com/esp32-pwm-arduino-ide/
+ *  Forrest Erickson
+ *  Date: 20210411
+ * Stared with code from: https://randomnerdtutorials.com/esp32-pwm-arduino-ide/
  * Experiment with setting of PWM to find frequency and resolution limitations.
  * 
  */
