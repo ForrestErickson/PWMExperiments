@@ -1,5 +1,6 @@
 /* PWMExperiments.ino
  * From: https://randomnerdtutorials.com/esp32-pwm-arduino-ide/
+ * Experiment with setting of PWM to find frequency and resolution limitations.
  * 
  */
 
@@ -12,22 +13,23 @@ const int ledPin14 = 14;  // 14 corresponds to GPIO14
 
 // setting PWM properties
 const int freqLED12 = 5000;
-const int freqLED14 = 80000;
+const int freqLED14 = 50000;
 
 const int ledChannel_12 = 0;
 const int ledChannel_14 = 1;
-//const int resolution = 8;     // Freq became 80.00 HKz when freq set for 80K
-const int resolution = 9;     // Freq became 80.00 HKz when freq set for 80K
-//const int resolution = 10;  // Freq became 78.13 HKz when freq set for 80K
-//const int resolution = 11;  // Freq became 39.06 HKz when freq set for 80K
-//const int resolution = 12;  // Freq became 19.h HKz when freq set for 80K
+//                                Set Freq: 80KHz    100KHz   200KHz  50KHz 
+//const int resolution = 8;   // Freq became 80.00    100.00  200.00
+//const int resolution = 9;   // Freq became 80.00    100.0   156.3
+const int resolution = 10;  // Freq became 78.13    78.13   78.13   50.00  
+//const int resolution = 11;  // Freq became 39.06    39.06    39.06    
+//const int resolution = 12;  // Freq became 19.53    19.53   19.53 
 const int NUMSTEPS = pow(2,resolution)-1; 
 
 const int DELAYTIME = 2;
 void setup(){
   // configure LED PWM functionalitites
   ledcSetup(ledChannel_12, freqLED12, resolution);
-  ledcSetup(ledChannel_14, freqLED14, resolution);
+  ledcSetup(ledChannel_14, freqLED14, resolution);    //Last setting takes precidence
   
   // attach the channel to the GPIO to be controlled
   ledcAttachPin(ledPin12, ledChannel_12);
